@@ -17,4 +17,17 @@ describe('Verify criket team for upcomming match', () => {
     })
   })
 
+  it('Check if there is atleast one wicketkeeper', () => {
+    cy.get('@teamJSON').then((team) => {
+      const players = team.player
+      let numOfwicketkeeper = 0
+      players.forEach((player) => {
+        if (player.role === "Wicket-keeper") {
+          numOfwicketkeeper++
+        }
+      })
+      expect(numOfwicketkeeper).to.be.at.least(1)
+    })
+  })
+
 })
